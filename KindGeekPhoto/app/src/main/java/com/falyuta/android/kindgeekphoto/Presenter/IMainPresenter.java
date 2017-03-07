@@ -5,4 +5,6 @@ package com.falyuta.android.kindgeekphoto.presenter;
  */
 
 public interface IMainPresenter {
+
+    void getPhotos();
 }

@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.falyuta.android.kindgeekphoto.adapters.PhotoAdapter;
 import com.falyuta.android.kindgeekphoto.interfaces.PhotoClickListener;
+import com.falyuta.android.kindgeekphoto.models.Photo;
 import com.falyuta.android.kindgeekphoto.presenter.IMainPresenter;
 import com.falyuta.android.kindgeekphoto.presenter.MainPresenterImpl;
 import com.falyuta.android.kindgeekphoto.R;
@@ -35,12 +36,16 @@ import com.falyuta.android.kindgeekphoto.utils.Constants;
 import com.falyuta.android.kindgeekphoto.utils.DisplayUtil;
 import com.falyuta.android.kindgeekphoto.interfaces.BaseNavigator;
 import com.falyuta.android.kindgeekphoto.interfaces.views.MainView;
+import com.falyuta.android.kindgeekphoto.utils.DividerItemDecoration;
+import com.falyuta.android.kindgeekphoto.utils.EndOffsetItemDecoration;
 import com.falyuta.android.kindgeekphoto.utils.FroyoAlbumDirFactory;
+import com.falyuta.android.kindgeekphoto.utils.StartOffsetItemDecoration;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -71,17 +76,18 @@ public class MainActivity extends BaseActivity
         } else {
             mAlbumStorageDirFactory = new BaseAlbumDirFactory();
         }
+        mPresenter.getPhotos();
     }
 
     private void setUpAdapter() {
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
-//        mRecyclerView.addItemDecoration(new EndOffsetItemDecoration(24));
-//        mRecyclerView.addItemDecoration(new StartOffsetItemDecoration(24));
+        mRecyclerView.addItemDecoration(new EndOffsetItemDecoration(24));
+        mRecyclerView.addItemDecoration(new StartOffsetItemDecoration(24));
 
-//        Drawable dividerItem = ContextCompat.getDrawable(getActivity(), R.drawable.divider_item_shipment);
-//        mRecyclerView.addItemDecoration(new DividerItemDecoration(dividerItem));
+        Drawable dividerItem = ContextCompat.getDrawable(this, R.drawable.divider_item_photo);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(dividerItem));
 
         mAdapter = new PhotoAdapter().withPhotoClickListener(this);
         mRecyclerView.setAdapter(mAdapter);
@@ -273,5 +279,10 @@ public class MainActivity extends BaseActivity
 
     private String getAlbumName() {
         return getString(R.string.app_name);
+    }
+
+    @Override
+    public void showPhotos(List<Photo> photos) {
+        mAdapter.setListPhotos(photos);
     }
 }

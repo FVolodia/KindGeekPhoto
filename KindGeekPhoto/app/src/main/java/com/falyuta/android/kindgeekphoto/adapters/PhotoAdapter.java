@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.falyuta.android.kindgeekphoto.R;
 import com.falyuta.android.kindgeekphoto.interfaces.PhotoClickListener;
 import com.falyuta.android.kindgeekphoto.models.Photo;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
@@ -50,27 +52,19 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
     @Override
     public void onBindViewHolder(final PhotoViewHolder holder, final int position) {
         final Photo currentphoto = mList.get(position);
-//        final String orderId = String.valueOf(currentShipment.getId());
-//        final String dateTime = (new StringBuffer().append(currentShipment.getPickup_date_text()).append(", ")
-//                .append(currentShipment.getPickup_time_text()).toString());
-//        final String addressFrom = currentShipment.getStart_location().getAddress();
-//        final String addressTo = currentShipment.getEnd_location().getAddress();
-//
-//        String itemDescription = "";
-//        if (!currentShipment.getRequested_delivery_items_desc().isEmpty()){
-//            itemDescription = currentShipment.getRequested_delivery_items_desc().get(0);
-//        }
-//
-//        final String what = currentShipment.getQuantity() + " "
-//                + itemDescription;
-//        final String payment = ShipmentUtils.getPayment(currentShipment);
+        final String urlPath = currentphoto.getPhotoPath();
+        final String photoName = currentphoto.getPhotoName();
+        final String photoDate = currentphoto.getPhotoDate();
 
-//        holder.mShipmentView.setOrderId(orderId);
-//        holder.mShipmentView.setDateTime(dateTime, false);
-//        holder.mShipmentView.setAddressFrom(addressFrom, false);
-//        holder.mShipmentView.setAddressTo(addressTo, false);
-//        holder.mShipmentView.setWhat(what);
-//        holder.mShipmentView.setPayment(payment);
+        Glide
+                .with(holder.mPhotoIv.getContext())
+                .load(new File(urlPath))
+                .centerCrop()
+                .crossFade()
+                .into(holder.mPhotoIv);
+
+        holder.mPhotoNameTv.setText(photoName);
+        holder.mPhotoDateTv.setText(photoDate);
     }
 
     @Override
