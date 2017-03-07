@@ -23,28 +23,34 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.falyuta.android.kindgeekphoto.Presenter.IMainPresenter;
+import com.falyuta.android.kindgeekphoto.Presenter.MainPresenterImpl;
 import com.falyuta.android.kindgeekphoto.R;
 import com.falyuta.android.kindgeekphoto.Utils.Constants;
 import com.falyuta.android.kindgeekphoto.Utils.DisplayUtil;
 import com.falyuta.android.kindgeekphoto.Utils.ImageUtils;
+import com.falyuta.android.kindgeekphoto.interfaces.BaseNavigator;
 import com.falyuta.android.kindgeekphoto.interfaces.views.MainView;
 
 import java.io.File;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity implements MainView{
+public class MainActivity extends BaseActivity
+        implements MainView, BaseNavigator {
 
     @BindView(R.id.recycler_main)
     RecyclerView mRecyclerView;
     @BindView(R.id.fab)
     FloatingActionButton mAddPhotoBtn;
+    private IMainPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setToolbarTitle(getString(R.string.app_name));
+        mPresenter = new MainPresenterImpl(this, this);
         mAddPhotoBtn.setOnClickListener(view ->
                 checkPermissionForSelectPhoto());
     }
