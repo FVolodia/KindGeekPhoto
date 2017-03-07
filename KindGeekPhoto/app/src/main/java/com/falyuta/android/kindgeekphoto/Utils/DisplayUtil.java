@@ -1,4 +1,4 @@
-package com.falyuta.android.kindgeekphoto.Utils;
+package com.falyuta.android.kindgeekphoto.utils;
 
 import android.app.Activity;
 import android.content.Context;

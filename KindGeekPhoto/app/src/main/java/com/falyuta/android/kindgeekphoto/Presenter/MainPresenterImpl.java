@@ -1,4 +1,4 @@
-package com.falyuta.android.kindgeekphoto.Presenter;
+package com.falyuta.android.kindgeekphoto.presenter;
 
 import com.falyuta.android.kindgeekphoto.interfaces.BaseNavigator;
 import com.falyuta.android.kindgeekphoto.interfaces.views.MainView;

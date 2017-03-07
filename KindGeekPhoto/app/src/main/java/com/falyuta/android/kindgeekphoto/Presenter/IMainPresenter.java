@@ -1,4 +1,4 @@
-package com.falyuta.android.kindgeekphoto.Presenter;
+package com.falyuta.android.kindgeekphoto.presenter;
 
 /**
  * Created by volodymyr on 3/7/17.

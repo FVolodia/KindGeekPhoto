@@ -1,4 +1,4 @@
-package com.falyuta.android.kindgeekphoto.Utils;
+package com.falyuta.android.kindgeekphoto.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
