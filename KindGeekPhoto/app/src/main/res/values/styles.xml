@@ -22,4 +22,14 @@
         <item name="android:background">?attr/colorPrimary</item>
     </style>
 
+    <style name="ProfileDialogTextViewStyle">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/big_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/btn_selector_white_transparent_rounded</item>
+    </style>
+
 </resources>

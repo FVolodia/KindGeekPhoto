@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.falyuta.android.kindgeekphoto.R;
 import com.falyuta.android.kindgeekphoto.interfaces.PhotoClickListener;
@@ -79,8 +81,14 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
     public static class PhotoViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.card_container_photo)
         CardView container;
-
-
+        @BindView(R.id.photo_iv)
+        ImageView mPhotoIv;
+        @BindView(R.id.delete_iv)
+        ImageView mDeleteIv;
+        @BindView(R.id.title_name_photo_tv)
+        TextView mPhotoNameTv;
+        @BindView(R.id.title_date_photo_tv)
+        TextView mPhotoDateTv;
 
 
         public PhotoViewHolder(View itemView) {

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Kind Geek Photo</string>
+    <string name="profile_take_photo">TAKE NEW PHOTO</string>
+    <string name="profile_upload_gallery">UPLOAD FROM GALLERY</string>
 </resources>

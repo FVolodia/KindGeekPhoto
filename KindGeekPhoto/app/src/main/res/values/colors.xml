@@ -8,4 +8,6 @@
     <color name="dark">#242539</color>
 
     <color name="white">@android:color/white</color>
+
+    <color name="light_gray_dark">#efeeed</color>
 </resources>
