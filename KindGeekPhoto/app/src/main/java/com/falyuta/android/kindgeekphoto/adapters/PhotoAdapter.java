@@ -65,6 +65,14 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
 
         holder.mPhotoNameTv.setText(photoName);
         holder.mPhotoDateTv.setText(photoDate);
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mListener != null) {
+                    mListener.onPhotoClick(view, position, currentphoto);
+                }
+            }
+        });
     }
 
     @Override

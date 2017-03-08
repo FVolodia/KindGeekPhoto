@@ -32,4 +32,9 @@
         <item name="android:background">@drawable/btn_selector_white_transparent_rounded</item>
     </style>
 
+    <style name="Theme.Material.Custom.AppBarOverlay"
+           parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="Theme.Material.Custom.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
 </resources>

@@ -1,10 +1,13 @@
 package com.falyuta.android.kindgeekphoto.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by volodymyr on 3/7/17.
  */
 
-public class Photo {
+public class Photo implements Parcelable {
     private String mPhotoPath;
     private String mPhotoDate;
     private String mPhotoName;
@@ -41,4 +44,35 @@ public class Photo {
     public void setPhotoName(String photoName) {
         mPhotoName = photoName;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.mPhotoPath);
+        dest.writeString(this.mPhotoDate);
+        dest.writeString(this.mPhotoName);
+    }
+
+    protected Photo(Parcel in) {
+        this.mPhotoPath = in.readString();
+        this.mPhotoDate = in.readString();
+        this.mPhotoName = in.readString();
+    }
+
+    public static final Parcelable.Creator<Photo> CREATOR = new Parcelable.Creator<Photo>() {
+        @Override
+        public Photo createFromParcel(Parcel source) {
+            return new Photo(source);
+        }
+
+        @Override
+        public Photo[] newArray(int size) {
+            return new Photo[size];
+        }
+    };
 }

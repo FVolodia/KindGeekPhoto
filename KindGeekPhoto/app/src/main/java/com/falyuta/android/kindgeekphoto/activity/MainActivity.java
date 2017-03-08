@@ -19,6 +19,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -49,8 +50,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
+
 public class MainActivity extends BaseActivity
-        implements MainView, BaseNavigator, PhotoClickListener {
+        implements MainView, PhotoClickListener {
 
     @BindView(R.id.recycler_main)
     RecyclerView mRecyclerView;
@@ -203,6 +205,7 @@ public class MainActivity extends BaseActivity
     private void handleBigCameraPhoto() {
 
         if (mCurrentPhotoPath != null) {
+            mPresenter.addPhoto(mCurrentPhotoPath);
             Toast.makeText(this, mCurrentPhotoPath, Toast.LENGTH_SHORT).show();
             Log.d("555", "handleBigCameraPhoto: " + mCurrentPhotoPath);
             galleryAddPic();
@@ -223,6 +226,7 @@ public class MainActivity extends BaseActivity
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             mCurrentPhotoPath = cursor.getString(columnIndex);
             cursor.close();
+            mPresenter.addPhoto(mCurrentPhotoPath);
             Toast.makeText(this, mCurrentPhotoPath, Toast.LENGTH_SHORT).show();
             Log.d("555", "handleBigCameraPhoto: " + mCurrentPhotoPath);
         }
@@ -284,5 +288,10 @@ public class MainActivity extends BaseActivity
     @Override
     public void showPhotos(List<Photo> photos) {
         mAdapter.setListPhotos(photos);
+    }
+
+    @Override
+    public void onPhotoClick(View view, int position, Photo photo) {
+        mPresenter.getPhotoDetail(photo, view);
     }
 }
