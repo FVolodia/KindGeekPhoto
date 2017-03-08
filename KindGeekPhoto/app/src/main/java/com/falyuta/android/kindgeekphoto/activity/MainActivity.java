@@ -299,4 +299,9 @@ public class MainActivity extends BaseActivity
     public void onPhotoClick(View view, int position, Photo photo) {
         mPresenter.getPhotoDetail(photo, view);
     }
+
+    @Override
+    public void removePhoto(View view, int position, Photo photo) {
+        mPresenter.removePhoto(photo,position);
+    }
 }

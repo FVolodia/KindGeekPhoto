@@ -16,4 +16,6 @@ public interface IMainPresenter {
     void addPhoto(String path, String name, String date);
 
     void getPhotoDetail(Photo photo, View view);
+
+    void removePhoto(Photo photo, int position);
 }

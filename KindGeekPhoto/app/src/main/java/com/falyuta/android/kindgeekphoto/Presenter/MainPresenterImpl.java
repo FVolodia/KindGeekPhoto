@@ -47,5 +47,11 @@ public class MainPresenterImpl extends BasePresenter<MainView, BaseNavigator>
         navigator.openPhotoDetailActivity(photo, view);
     }
 
+    @Override
+    public void removePhoto(Photo photo, int position) {
+        RealmPhotoManager.removePhotoFromDb(photo.getPhotoPath());
+        view.invalidateData();
+    }
+
 
 }

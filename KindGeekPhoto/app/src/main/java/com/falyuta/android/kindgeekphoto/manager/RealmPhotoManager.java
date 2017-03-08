@@ -33,4 +33,12 @@ public class RealmPhotoManager {
         return responsePhotos;
 
     }
+
+    public static void removePhotoFromDb(final String photoPath) {
+        Realm realm = Realm.getInstance(MainApplication.getInstance().getRealmConfig());
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Photo> realmCard = realm1.where(Photo.class).equalTo("mPhotoPath", photoPath).findAll();
+            realmCard.deleteAllFromRealm();
+        });
+    }
 }
