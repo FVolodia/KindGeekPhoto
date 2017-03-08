@@ -3,11 +3,15 @@ package com.falyuta.android.kindgeekphoto.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by volodymyr on 3/7/17.
  */
 
-public class Photo implements Parcelable {
+public class Photo extends RealmObject implements Parcelable {
+    @PrimaryKey
     private String mPhotoPath;
     private String mPhotoDate;
     private String mPhotoName;

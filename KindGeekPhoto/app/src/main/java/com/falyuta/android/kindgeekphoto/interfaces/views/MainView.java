@@ -12,6 +12,8 @@ public interface MainView extends BaseView {
 
     void showPhotos(List<Photo> photos);
 
+    void invalidateData();
+
 
 
 }

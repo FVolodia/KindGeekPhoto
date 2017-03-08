@@ -13,7 +13,7 @@ public interface IMainPresenter {
 
     void getPhotos();
 
-    void addPhoto(String path);
+    void addPhoto(String path, String name, String date);
 
     void getPhotoDetail(Photo photo, View view);
 }

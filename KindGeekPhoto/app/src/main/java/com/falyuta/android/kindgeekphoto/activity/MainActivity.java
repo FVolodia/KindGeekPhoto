@@ -61,6 +61,8 @@ public class MainActivity extends BaseActivity
     private IMainPresenter mPresenter;
     private PhotoAdapter mAdapter;
     private String mCurrentPhotoPath;
+    private String mPhotoName;
+    private String mPhotoDate;
     private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
 
     @Override
@@ -205,9 +207,7 @@ public class MainActivity extends BaseActivity
     private void handleBigCameraPhoto() {
 
         if (mCurrentPhotoPath != null) {
-            mPresenter.addPhoto(mCurrentPhotoPath);
-            Toast.makeText(this, mCurrentPhotoPath, Toast.LENGTH_SHORT).show();
-            Log.d("555", "handleBigCameraPhoto: " + mCurrentPhotoPath);
+            mPresenter.addPhoto(mCurrentPhotoPath,mPhotoName,mPhotoDate);
             galleryAddPic();
             mCurrentPhotoPath = null;
 
@@ -226,9 +226,7 @@ public class MainActivity extends BaseActivity
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             mCurrentPhotoPath = cursor.getString(columnIndex);
             cursor.close();
-            mPresenter.addPhoto(mCurrentPhotoPath);
-            Toast.makeText(this, mCurrentPhotoPath, Toast.LENGTH_SHORT).show();
-            Log.d("555", "handleBigCameraPhoto: " + mCurrentPhotoPath);
+            mPresenter.addPhoto(mCurrentPhotoPath,mPhotoName,mPhotoDate);
         }
 
     }
@@ -252,7 +250,9 @@ public class MainActivity extends BaseActivity
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        mPhotoDate = timeStamp;
         String imageFileName = Constants.JPEG_FILE_PREFIX + timeStamp + "_";
+        mPhotoName = imageFileName;
         File albumF = getAlbumDir();
         File imageF = File.createTempFile(imageFileName, Constants.JPEG_FILE_SUFFIX, albumF);
         return imageF;
@@ -288,6 +288,11 @@ public class MainActivity extends BaseActivity
     @Override
     public void showPhotos(List<Photo> photos) {
         mAdapter.setListPhotos(photos);
+    }
+
+    @Override
+    public void invalidateData() {
+        mPresenter.getPhotos();
     }
 
     @Override
